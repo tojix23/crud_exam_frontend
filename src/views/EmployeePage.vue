@@ -247,11 +247,14 @@
                             maxlength="11"
                           ></v-text-field>
                         </v-col>
+                        <v-col cols="12" md="12" sm="12">
+                          <v-file-input
+                            label="Photo(Optional)"
+                            variant="outlined"
+                            v-model="updateNew.photo_path"
+                          ></v-file-input>
+                        </v-col>
                       </v-row>
-
-                      <small class="text-caption text-medium-emphasis"
-                        >*indicates required field</small
-                      >
                     </v-card-text>
 
                     <v-divider></v-divider>
@@ -341,6 +344,9 @@ export default {
         account_type: "",
         photo_path: null,
       },
+      updateNew: {
+        photo_path: null,
+      },
       headers: [
         { title: "Photo", align: "start", sortable: false, key: "photo_path" },
         { title: "Name", align: "start", key: "fullname" },
@@ -355,12 +361,12 @@ export default {
   },
 
   methods: {
-    chooseFile() {
-      this.$refs.fileInput.click();
-    },
-    triggerFileInput() {
-      this.$refs.fileInput.$el.querySelector("input").click();
-    },
+    // chooseFile() {
+    //   this.$refs.fileInput.click();
+    // },
+    // triggerFileInput() {
+    //   this.$refs.fileInput.$el.querySelector("input").click();
+    // },
     async fetchEmployees() {
       try {
         const url = utils._api(this.constant.fetchEmployees);
@@ -449,8 +455,8 @@ export default {
         formData.append("contact_number", this.update.contact_number);
         formData.append("country", this.update.country);
         formData.append("account_type", this.update.account_type);
-        if (this.update.photo_path) {
-          formData.append("photo_path", this.update.photo_path);
+        if (this.updateNew.photo_path) {
+          formData.append("photo_path", this.updateNew.photo_path);
         }
 
         const response = await axios.post(url, formData, {
@@ -464,6 +470,9 @@ export default {
         this.dialogUpdate = false;
         this.snackbar = true;
         this.message = "Update Employee successfuly!";
+        this.updateNew = {
+          photo_path: null,
+        };
         this.fetchEmployees();
       } catch (error) {
         console.error("Error updating employee:", error.message);
