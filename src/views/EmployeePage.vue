@@ -1,6 +1,6 @@
 <template>
   <div class="employee pa-16">
-    <v-card flat>
+    <v-card elevation="16" class="pa-16">
       <v-card-title class="d-flex align-center pe-2">
         <v-icon icon="mdi-account-multiple"></v-icon> &nbsp; Employee Records
         <v-spacer></v-spacer>
