@@ -153,6 +153,7 @@
             <td class="text-left">{{ item.username }}</td>
             <td class="text-left">{{ item.country }}</td>
             <td class="text-left">{{ item.email }}</td>
+            <td class="text-left">{{ item.account_type }}</td>
             <td class="text-left">
               <!-- EDIT -->
               <div>
@@ -347,7 +348,7 @@ export default {
         { title: "Country", align: "start", key: "country" },
         { title: "Email", align: "start", key: "email" },
         { title: "Account Type", align: "start", key: "account_type" },
-        { title: "", align: "start" },
+        { title: "", align: "start", key: "action" },
       ],
       data: [],
     };
